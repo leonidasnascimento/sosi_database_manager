@@ -48,7 +48,7 @@ export abstract class DataProvider<TClient> implements IDataProvider {
     }
   }
 
-  public CustomFunctionCommand<TDbCliente, TOutput>(
+  public CustomFunctionCommand<TOutput>(
     _inputFunction: (dbClient?: any) => Output<TOutput> | undefined
   ): Output<TOutput> | undefined {
     if (this.Connect()) {
@@ -70,7 +70,7 @@ export abstract class DataProvider<TClient> implements IDataProvider {
   ): Output<TOutput> | undefined {
     if (this.Connect()) {
       let output: Output<TOutput> | undefined;
-      output = this.CustomScriptedCommand(command);
+      output = this.ExecuteScriptedCommand(command);
 
       if (!this.Disconnect()) {
         throw new Error("ERROR trying to disconnect the data repository");

@@ -1,13 +1,17 @@
 {
   "name": "sosi_database_manager",
   "version": "1.0.0",
-  "description": "SoSI's data base abstraction for data repositories providers",
+  "description": "SoSI's data base implementation for data repositories providers",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-    "lint": "tslint -p tsconfig.json"
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
